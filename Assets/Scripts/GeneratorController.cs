@@ -7,11 +7,14 @@ public class GeneratorController : MonoBehaviour
     //bullet prefab array, 
     public GameObject[] bulletPrefab;
     
+    
+    //spawn frequency for bullets shot
+    public float shotFrequency = 2.00f;
+
     //current bullet flag, bullet index and alive time
-    //public only for testing purposes
-    public bool bulletAlive = false;
-    public int bulletIndex = 0;
-    public float shotTime = 0.0f;
+    private bool bulletAlive = false;
+    private int bulletIndex = 0;
+    private float shotTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +47,9 @@ public class GeneratorController : MonoBehaviour
             //starts shot alive timer
             shotTime += Time.deltaTime;
 
-            //once 5 seconds have passed the flag and timer are reset so another bullet can be shot
-            if (shotTime >= 5.0f)
+            //once user defined destroyTimer seconds have passed
+            //the flag and timer are reset so another bullet can be shot
+            if (shotTime >= shotFrequency)
             {
                 shotTime = 0;
                 bulletAlive = false;

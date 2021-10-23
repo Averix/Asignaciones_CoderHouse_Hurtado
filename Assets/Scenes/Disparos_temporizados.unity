@@ -498,5 +498,4 @@ MonoBehaviour:
   bulletPrefab:
   - {fileID: 1920044721433900, guid: 56fd5142c4049e44e80a425288d1e618, type: 3}
   - {fileID: 1196744780447740, guid: 65b22875f82135b43abdb115c7a6b345, type: 3}
-  bulletAlive: 0
-  bulletIndex: 0
+  shotFrequency: 2
