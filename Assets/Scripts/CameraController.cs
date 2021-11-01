@@ -21,12 +21,13 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         CameraControl();
-        CameraArrayControl();
+        
     }
 
-    void CameraControl()
+    //Deactivates current camera and set next camera on array
+    private void CameraControl()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
             cameras[lastCamera].SetActive(false);
             vCameras[lastCamera].SetActive(false);
@@ -34,19 +35,19 @@ public class CameraController : MonoBehaviour
             vCameras[newCamera].SetActive(true);
             lastCamera += 1;
             newCamera += 1;
+            lastCamera = CameraArrayControl(lastCamera);
+            newCamera = CameraArrayControl(newCamera);
         }
     }
 
-    void CameraArrayControl()
+    // Loops Array pointer to 0 position
+    private int CameraArrayControl(int Array)
     {
-        if (newCamera == camNumber)
+        if (Array == camNumber)
         {
-            newCamera = 0;
+             Array = 0;
         }
-        if (lastCamera == camNumber)
-        {
-            lastCamera = 0;
-        }
+        return Array;
     }
 
     //verifies the available cameras
