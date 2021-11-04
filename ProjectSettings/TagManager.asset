@@ -8,6 +8,8 @@ TagManager:
   - Portal
   - Ground
   - Golden Wall
+  - EnemyRecovery
+  - PlayerRecovery
   layers:
   - Default
   - TransparentFX

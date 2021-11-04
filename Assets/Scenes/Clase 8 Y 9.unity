@@ -1747,6 +1747,10 @@ PrefabInstance:
       propertyPath: lookSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1772540047144038453, guid: 578a43270f744e14a93245440dbba8e2, type: 3}
+      propertyPath: healingArea
+      value: 
+      objectReference: {fileID: 1554638398}
     - target: {fileID: 7290819509262270105, guid: 578a43270f744e14a93245440dbba8e2, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -1957,6 +1961,10 @@ PrefabInstance:
       propertyPath: lookSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7557217402198019405, guid: 33b828b8f1c31334988de54e3fe47ee6, type: 3}
+      propertyPath: healingArea
+      value: 
+      objectReference: {fileID: 1554638398}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33b828b8f1c31334988de54e3fe47ee6, type: 3}
 --- !u!1001 &2062469749
@@ -1982,6 +1990,10 @@ PrefabInstance:
       propertyPath: lookSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1076798137395755080, guid: fb5a5d8096fad664eaef106c6a5dcc51, type: 3}
+      propertyPath: healingArea
+      value: 
+      objectReference: {fileID: 1554638398}
     - target: {fileID: 2168778097827828752, guid: fb5a5d8096fad664eaef106c6a5dcc51, type: 3}
       propertyPath: m_UseGravity
       value: 1

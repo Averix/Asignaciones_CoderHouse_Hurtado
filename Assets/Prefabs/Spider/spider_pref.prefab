@@ -1056,9 +1056,10 @@ GameObject:
   - component: {fileID: 7557217402198019405}
   - component: {fileID: 1959787122034427164}
   - component: {fileID: 686890566050421020}
+  - component: {fileID: 314005738}
   m_Layer: 0
   m_Name: spider_pref
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1111,7 +1112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  enemyType: 0
+  enemyType: 2
+  healingArea: {fileID: 0}
 --- !u!65 &1959787122034427164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1139,8 +1141,23 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &314005738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715103906888602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aed199bf925fe14785b0306f42d4beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 0
+  enableDamage: 0
+  lowHealth: 0
 --- !u!1 &1719841372004032
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,10 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private EnemyType enemyType;
+    //Enable attack is not set. Its meant to enable attack behavior
+    //[SerializeField] private bool enableAttack;
+    [SerializeField] private GameObject healingArea;
+    private LifeController lifeController;
     private float lookSpeed = 0.00f;
     private float speed = 0.0f;
     //private int attackDamage = 0;
@@ -22,6 +26,11 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         ModeSelector(enemyType);
+    }
+
+    private void Awake()
+    {
+        lifeController = GetComponent<LifeController>();
     }
 
     // Update is called once per frame
@@ -69,14 +78,29 @@ public class EnemyController : MonoBehaviour
     //look method using lerp
     private void LookAtPlayer()
     {
-        Quaternion newRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, lookSpeed * Time.deltaTime);
+        if (lifeController.lowHealth == false)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, lookSpeed * Time.deltaTime);
+        }
+        if (lifeController.lowHealth == true)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(healingArea.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, lookSpeed * Time.deltaTime);
+        }
     }
 
     //movement method to chase the player
     private void ChasePlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        if (lifeController.lowHealth == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
+        if (lifeController.lowHealth == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, healingArea.transform.position, speed * Time.deltaTime);
+        }
     }
 
     //method to calculate remaining distance to the player
