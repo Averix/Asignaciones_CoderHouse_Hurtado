@@ -7,12 +7,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed = 10.0f;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Collider playerCollider;
+    [SerializeField] private Rigidbody playerRB;
     private bool isSmall = false;
+    private bool isJump = false;
+    [SerializeField] private GameObject weapon;
+    //private float jumpTime = 0.00f;
 
     // Start is called before the first frame update
     void Start()
     {
         playerAnimator.SetBool("Idle", true);
+        playerRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -24,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+
     }
 
     // Simplified movement control
@@ -34,13 +39,30 @@ public class PlayerController : MonoBehaviour
         transform.Translate(playerSpeed * Time.deltaTime * Input.GetAxis("Vertical") * Vector3.forward , Space.Self);
         if(Input.GetAxis("Horizontal")!=0 || Input.GetAxis("Vertical") != 0)
         {
-            playerAnimator.SetBool("Idle", false);
-            playerAnimator.SetBool("Run", true);
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                playerAnimator.SetBool("Idle", false);
+                playerAnimator.SetBool("Run", true);
+                playerAnimator.SetBool("Back", false);
+            }
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                playerAnimator.SetBool("Idle", false);
+                playerAnimator.SetBool("Run", false);
+                playerAnimator.SetBool("Back", true);
+            }
         }
         else
         {
+            playerAnimator.SetBool("Back", false);
             playerAnimator.SetBool("Run", false);
             playerAnimator.SetBool("Idle", true);
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && isJump == false)
+        {
+            isJump = true;
+            playerAnimator.SetBool("Jump", true);
+            playerRB.AddForce(Vector3.up * 10f);
         }
     }
 
@@ -71,6 +93,16 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Ground" && isJump == true)
+        {
+            isJump = false;
+            playerAnimator.SetBool("Jump", false);
+        }
+        if (collision.gameObject.tag == "Weapon")
+        {
+            weapon.SetActive(true);
+        }
+        
     }
     /*  void MovementControl()
       {

@@ -10,6 +10,7 @@ TagManager:
   - Golden Wall
   - EnemyRecovery
   - PlayerRecovery
+  - Weapon
   layers:
   - Default
   - TransparentFX
